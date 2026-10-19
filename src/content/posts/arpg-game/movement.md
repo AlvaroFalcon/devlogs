@@ -1,13 +1,16 @@
 ---
 title: "A red octagon learns to walk"
 date: 2026-09-07
-summary: "This is the first devlog for ARPG Game, a 2D top-down ARPG in Godot 4.1.1 built in C#/.NET, borrowing heavily from Path of Exile's systems (hence the name). Before this session the repo had nothing but scaffolding — a…"
+summary: "This is the first devlog for ARPG Game, a 2D top-down action RPG in Godot 4.1.1 built in C#/.NET. Before this session the repo had nothing but scaffolding — and the interesting part was everything that went wrong while trying to see it work."
 cover: ./images/movement-trail.png
 coverAlt: "A red octagon learns to walk"
 ---
 This is the first devlog for ARPG Game, a 2D top-down ARPG in Godot 4.1.1
-built in C#/.NET, borrowing heavily from Path of Exile's systems (hence the
-name). Before this session the repo had nothing but scaffolding — a
+built in C#/.NET. It's inspired by the loot-driven action RPGs I've sunk far
+too many hours into over the years. (If you spot "Path to Exile" on a title
+screen in early screenshots: that was a provisional name and an inside joke,
+and it's gone now — the game doesn't have an official name yet, so for the
+moment it's simply ARPG Game.) Before this session the repo had nothing but scaffolding — a
 `CLAUDE.md`, some agent configs, headless-run tooling. No gameplay code at
 all. So let's be precise about where "first devlog" actually leaves us:
 there is a player character that moves around an empty grey rectangle. That's
@@ -32,7 +35,7 @@ if it's nonzero, that branch runs and the method returns before touching the
 nav agent at all. "Mode" is just whichever branch happened to run.
 
 Movement speed itself isn't a hardcoded float — it comes from a small
-Path-of-Exile-style stat modifier stack (more on that below). The full
+stat modifier stack of the kind the genre is built on (more on that below). The full
 rationale for both systems, including alternatives considered and rejected
 (tile-grid movement, click-then-lock queuing), is written up in
 [`docs/design/movement.md`](https://github.com/AlvaroFalcon/arpg_game/blob/main/docs/design/movement.md) and
@@ -164,7 +167,7 @@ resumed once WASD releases.
 The other piece of infrastructure this session is easy to miss because it's
 currently backing exactly one number: `PlayerStats.MovementSpeed` isn't a
 constant, it's a `Stat` — a base value plus a stack of modifiers, computed
-with Path of Exile's actual Flat → Increased → More layering:
+with the genre's classic Flat → Increased → More layering:
 
 ```csharp
 public float Value
@@ -190,7 +193,7 @@ public float Value
 }
 ```
 
-For anyone who hasn't played Path of Exile: the point of splitting
+For anyone who hasn't played this kind of ARPG: the point of splitting
 "Increased" from "More" is to stop percentage bonuses from either
 under- or over-stacking in ways that break balance. All your `Increased`
 modifiers — usually from gear affixes, passives, that sort of routine,

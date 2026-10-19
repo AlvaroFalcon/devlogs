@@ -1,6 +1,6 @@
 ---
 name: ARPG Game
-tagline: A Path of Exile–style action RPG with a survivor mode and online co-op, built in Godot 4 and C#.
+tagline: A loot-driven action RPG with a survivor mode and online co-op, built in Godot 4 and C#.
 repo: https://github.com/AlvaroFalcon/arpg_game
 stack: [Godot 4.1, C# / .NET 6, Voxel HD-2D]
 status: active

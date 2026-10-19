@@ -46,7 +46,7 @@ nor `Spell` — a dash, a warcry, a toggle. Without it, those skills have no
 mechanism limiting how often you press them. Cooldown recovery is a **rate
 divisor**, not a subtraction: `effectiveCooldown = Cooldown / CooldownRecovery`,
 where `CooldownRecovery` starts at 1.0 and modifiers push it up. The
-alternative, "-X% cooldown," is the one PoE itself moved away from, because
+alternative, "-X% cooldown," is the one ARPGs have learned to avoid, because
 it hits 100% and the skill's cooldown vanishes — a divisor is asymptotic and
 can't reach zero no matter how much gets stacked on it. Cooldown also starts
 counting on cast *start*, not cast end, so a build that stacks cast speed
@@ -70,7 +70,7 @@ rather than whatever order it happened to get inserted in. The design
 argument underneath the split is worth stating on its own: **players
 remember behaviour transforms and forget numeric ones.** Nobody's build
 identity is "+12% damage" — it's "my projectiles fork," or "my fireball
-ignites." Every build identity in this genre, from PoE's supports to Hades'
+ignites." Every build identity in this genre, from support gems to Hades'
 boons, is a behaviour transform. Pass two's seams were only built for the
 forgettable kind.
 

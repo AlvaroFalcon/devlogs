@@ -16,7 +16,7 @@ layer.
 ## The grid, and the trick it's built on
 
 `docs/design/items.md` picked up an "Inventory interaction" section before any
-of this was code: a 12x5 grid, 60 cells, sized to match PoE's — big enough that
+of this was code: a 12x5 grid, 60 cells, a familiar size for the genre — big enough that
 you're not nagged between packs, small enough that clearing it out is a real
 decision instead of a chore. Toggled with `i`, and the world keeps running
 behind it — this is an ARPG, not a menu game, and a pausing inventory encourages
@@ -169,7 +169,7 @@ node the matching release event landed on.
 explicitly as a design bug rather than a preference: auto-collecting equipment
 takes away the entire "is this worth carrying" decision a limited grid exists
 to pose. Equipment pickup is click-only now — the ground label or the sprite,
-the D2/PoE interaction — and only currency still auto-collects, per its own
+the classic ARPG interaction — and only currency still auto-collects, per its own
 `AutoPickup` flag. This is also where manual pickup ran straight into an
 existing rule: `docs/design/items.md` has always said filters control display
 and never behaviour, so a hidden gold pile still gets auto-collected. But
@@ -223,8 +223,8 @@ This is what all four tooltip fixes were chasing — name in its rarity colour
 (sourced from `FilterChain.Evaluate`, never a direct read of the rarity enum,
 same discipline ground labels already follow), base type, item level, and the
 rolled affixes with their tier numbers attached. Showing tiers is deliberate
-and matches `docs/design/affixes.md`'s own reasoning: PoE hides them, and
-its playerbase responded by installing third-party tools to read them anyway.
+and matches `docs/design/affixes.md`'s own reasoning: games that hide them
+see their players respond by installing third-party tools to read them anyway.
 A grid cell showing a colour and a clipped base name ("Ringm", "Leath") isn't
 enough information to make the keep-or-drop call the inventory exists to pose
 in the first place — the tooltip is where that decision actually gets made.

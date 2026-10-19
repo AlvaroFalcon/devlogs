@@ -24,7 +24,7 @@ So `docs/design/stats.md` got a second pass before a single affix existed:
 Life and Mana maximums became real modifiable stats instead of plain floats
 on `ResourcePool` (the single most common affix in the genre, "+X to Maximum
 Life," was previously inexpressible), damage gained four types so mitigation
-could exist, and a defensive layer landed — Armour via PoE's
+could exist, and a defensive layer landed — Armour via the familiar
 `armour / (armour + 10 * damage)`, resistances capped at 75% with overcap
 tracked rather than discarded, crit rolling and applying *before*
 mitigation so armour is meaningfully worse against crit builds. A third pass

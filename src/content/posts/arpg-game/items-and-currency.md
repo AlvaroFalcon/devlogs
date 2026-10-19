@@ -11,7 +11,7 @@ than forward: before a single item can drop, something has to decide what a
 "item" even is — and this project decided that question almost entirely
 backwards, by designing for a feature that isn't built.
 
-That feature is the in-game item filter — the thing PoE and D2 players live
+That feature is the in-game item filter — the thing ARPG players live
 inside of, the config that recolours, resizes, or hides drops so a screen full
 of loot doesn't drown the two things that matter. There's no UI for it yet.
 There may not be for a while. But `docs/design/items.md` and the milestone-1
@@ -109,7 +109,7 @@ public static readonly IReadOnlyList<FilterRule> All = new[]
 ```
 
 A future player-authored filter doesn't override this list — it **prepends**
-to it. First matching rule wins (PoE's semantics, and `FilterChain.Evaluate`
+to it. First matching rule wins (the usual loot-filter semantics, and `FilterChain.Evaluate`
 is the one place that rule is allowed to live), so a user rule ahead of the
 defaults simply intercepts before the default ever gets asked. Want Common
 items red? Prepend one rule. The label node itself never learns rarity
@@ -140,7 +140,7 @@ right there.
 The design doc draws the line explicitly: **a hidden gold pile is still
 auto-collected on walk-over.** If hiding something also stopped the player
 getting it, filters would silently cost players loot for reasons they can't
-see on screen — the exact failure mode both PoE and D2 refuse to allow.
+see on screen — the exact failure mode the genre's best filters refuse to allow.
 
 `CurrencyDrop`, the milestone-1 `IDroppable` for a gold pile, enforces this
 structurally rather than by convention. `OnPickup` takes no `DisplayStyle`
@@ -183,7 +183,7 @@ drawn and nothing about what happened.
 
 ## No unidentified items
 
-D2's identify scroll and PoE's Scroll of Wisdom are both absent here, and
+Identify scrolls, a genre staple, are absent here, and
 that's a deliberate cut rather than an oversight. The reasoning connects
 straight back to the filter: an unidentified item's descriptor *changes*
 after it drops — the affixes, the tiers, sometimes the rarity, all reveal
@@ -297,7 +297,7 @@ sidebar below), `ItemClass`, `ItemTags`, `CurrencyDefinition` +
 `GroundLabelPool` — a pooled `CanvasLayer` of `Label` controls that project
 from world position to screen every frame and bucket-stack vertically so a
 pack's worth of drops don't overlap. Labels are always-on in milestone 1;
-hold-key-to-show (the D2/PoE convention, versus D3's always-on) is flagged
+hold-key-to-show (the classic convention, versus always-on labels) is flagged
 in the design doc as proposed but not yet decided, and the pool's visibility
 gate is a single boolean specifically so that switch, whenever it happens,
 touches one line instead of every label producer.

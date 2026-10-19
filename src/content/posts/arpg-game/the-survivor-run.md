@@ -8,11 +8,13 @@ coverAlt: "It's a game now: the survivor run"
 Until last night, ARPG Game was a very well-tested sandbox: a mage, some
 training dummies, a fireball with forks, an affix system, a grid inventory.
 Every system was there; nothing to *do* with them. This post is about the night
-it turned into a game — a Vampire Survivors-style run with a Path of Exile-style
+it turned into a game — a Vampire Survivors-style run with a loot-driven ARPG
 character — and about the parts that were easy because of decisions made weeks
 ago, and the parts that weren't.
 
 ![Main menu](./images/menu-main.png)
+
+*The "Path to Exile" on that title screen was a provisional name and an inside joke; it has since been removed, and the game doesn't have an official name yet.*
 
 ## The shape: survive in the run, keep the gear
 
