@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib';
+---
+<Base title="Not found" description="This page does not exist.">
+  <h1>Nothing here.</h1>
+  <p class="lead">That page doesn't exist — maybe it moved. <a href={url()}>Back to the latest posts</a>.</p>
+</Base>

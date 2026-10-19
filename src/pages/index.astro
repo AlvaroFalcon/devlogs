@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPosts, getProjects, projectOf, url } from '../lib';
+
+const posts = await getPosts();
+const projects = await getProjects();
+const names = Object.fromEntries(projects.map((p) => [p.id, p.data.name]));
+---
+<Base title="Devlogs" description="Development logs for my game and tool projects: what got built, why, and what went wrong." nav="home">
+  <p class="eyebrow">Devlogs</p>
+  <h1>What got built, why, and what broke on the way.</h1>
+  <p class="lead">Running write-ups from my projects — technical, honest about the bugs, with screenshots.</p>
+
+  <h2 class="section-title">Latest posts</h2>
+  <div class="cards">
+    {posts.map((post, i) => <PostCard post={post} projectName={names[projectOf(post)]} eager={i < 3} />)}
+  </div>
+
+  <h2 class="section-title">Projects</h2>
+  <div class="cards">
+    {projects.map((p) => (
+      <a class="project card" href={url(`${p.id}/`)}>
+        <h2>{p.data.name}</h2>
+        <p>{p.data.tagline}</p>
+        <ul class="stack">{p.data.stack.map((s) => <li>{s}</li>)}</ul>
+      </a>
+    ))}
+  </div>
+</Base>

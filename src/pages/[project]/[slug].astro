@@ -1,0 +1,43 @@
+---
+import { getEntry, render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { formatDate, getPosts, postUrl, projectOf, readingMinutes, slugOf, url, type Post } from '../../lib';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => {
+    // Older/newer within the same project, for the pager at the bottom.
+    const siblings = posts.filter((p) => projectOf(p) === projectOf(post));
+    const i = siblings.indexOf(post);
+    return {
+      params: { project: projectOf(post), slug: slugOf(post) },
+      props: { post, newer: siblings[i - 1], older: siblings[i + 1] },
+    };
+  });
+}
+interface Props { post: Post; newer?: Post; older?: Post }
+const { post, newer, older } = Astro.props;
+const project = await getEntry('projects', projectOf(post));
+const { Content } = await render(post);
+// The cover is for cards and link previews; the post body shows its own images.
+const { title, date, summary, cover, tags } = post.data;
+const og = cover ? (await getImage({ src: cover, width: 1200, format: 'jpg' })).src : undefined;
+---
+<Base title={title} description={summary} image={og}>
+  <article class="article">
+    <header>
+      <p class="eyebrow"><a href={url(`${projectOf(post)}/`)}>{project?.data.name ?? projectOf(post)}</a></p>
+      <h1>{title}</h1>
+      <p class="meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time> · {readingMinutes(post.body)} min read
+        {tags.map((t) => <> · <span class="chip">{t}</span></>)}
+      </p>
+    </header>
+    <div class="prose"><Content /></div>
+    <nav class="pager" aria-label="More posts">
+      {older && <a class="prev" href={postUrl(older)}><small>← Older</small>{older.data.title}</a>}
+      {newer && <a class="next" href={postUrl(newer)}><small>Newer →</small>{newer.data.title}</a>}
+    </nav>
+  </article>
+</Base>

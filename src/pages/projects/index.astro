@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts, getProjects, url } from '../../lib';
+
+const projects = await getProjects();
+const counts = Object.fromEntries(await Promise.all(projects.map(async (p) => [p.id, (await getPosts(p.id)).length])));
+---
+<Base title="Projects" description="Every project that has a devlog." nav="projects">
+  <p class="eyebrow">Projects</p>
+  <h1>Projects</h1>
+  <div class="cards">
+    {projects.map((p) => (
+      <a class="project card" href={url(`${p.id}/`)}>
+        <span class="meta">{p.data.status} · {counts[p.id]} {counts[p.id] === 1 ? 'post' : 'posts'}</span>
+        <h2>{p.data.name}</h2>
+        <p>{p.data.tagline}</p>
+        <ul class="stack">{p.data.stack.map((s) => <li>{s}</li>)}</ul>
+      </a>
+    ))}
+  </div>
+</Base>

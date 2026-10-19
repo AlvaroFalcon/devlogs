@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate, postUrl, type Post } from '../lib';
+
+interface Props { post: Post; projectName?: string; eager?: boolean }
+const { post, projectName, eager = false } = Astro.props;
+const { title, date, summary, cover, coverAlt } = post.data;
+---
+<a class="card" href={postUrl(post)}>
+  {cover
+    ? <Image src={cover} alt={coverAlt ?? ''} widths={[400, 720]} sizes="(max-width: 640px) 100vw, 360px" loading={eager ? 'eager' : 'lazy'} />
+    : <div class="placeholder" aria-hidden="true"></div>}
+  <div class="card-body">
+    <span class="meta">{projectName && <span class="chip">{projectName}</span>} <time datetime={date.toISOString()}>{formatDate(date)}</time></span>
+    <h3>{title}</h3>
+    <p>{summary}</p>
+  </div>
+</a>
