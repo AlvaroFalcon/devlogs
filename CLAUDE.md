@@ -19,6 +19,8 @@ Create `src/content/projects/<project-id>.md` (kebab-case id; not `projects`, wh
 
 Technical but friendly, written for people curious how games and tools get made: what we tried, why, what broke, what we'd do differently. Pull rationale from the project's own design docs and journal; never invent decisions or claim unfinished work. Posts are in English.
 
+For ARPG Game: never name Path of Exile (or "PoE") — the source design docs do, the posts don't. Say it's inspired by loot-driven ARPGs of the genre the author has played a lot. The game has no official name yet: call it "ARPG Game"; "Path to Exile" on old title screens was a provisional inside joke, already explained in the first post and in the survivor-run post.
+
 ## Don't
 
 - Don't add client-side JavaScript frameworks or web fonts: pages ship as plain HTML + one CSS file on purpose.
